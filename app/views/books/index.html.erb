@@ -1,0 +1,29 @@
+<h1>Book</h1>
+<% @books.each do |book| %>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr></tr>
+  </tbody>
+</table>
+<%= link_to "Delete", books_path, method: :delete %>
+  <%= book.title %>
+  <%= book.body %>
+<% end %>
+<h2>New book</h2>
+<%= form_with model:@book, url:'/books', local:true do |f| %>
+
+<h4>Title</h4>
+  <%= f.text_field :title %>
+
+<h4>Body</h4>
+  <%= f.text_area :body %>
+
+  <%= f.submit 'Create Book' %>
+
+<% end %>

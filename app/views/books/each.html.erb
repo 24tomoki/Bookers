@@ -1,0 +1,27 @@
+
+each.html.erb
+
+<% @lists.each do |list| %>
+  <%= list.title %>
+  <%= list.body %>
+<% end %>
+
+~~ each_controller ~~
+
+def each
+  @lists = List.all
+end
+
+def aaa
+
+end
+
+aaa.html.erb
+
+~~error~~
+
+model => エラー内容が引っかかってるかどうか => success いらない
+
+controller => index or show
+
+html => error 文
