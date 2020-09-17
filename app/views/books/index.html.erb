@@ -1,22 +1,34 @@
 <h1>Book</h1>
-<% @books.each do |book| %>
+
 <table>
   <thead>
     <tr>
       <th>Title</th>
       <th>Body</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
-    <tr></tr>
+    <% @books.each do |book| %>
+    <tr>
+      <td><%= book.title %></td>
+      <td><%= book.body %></td>
+      <td><%= link_to "Show", book_path(book), method: :get %></td>
+      <td><%= link_to "Edit", edit_book_path(book), method: :get %></td>
+      <td><%= link_to "Destroy", book_path(book.id), method: :delete, data: {confirm: "Are you sure?"} %></td>
+    </tr>
+    <% end %>
   </tbody>
 </table>
-<%= link_to "Delete", books_path, method: :delete %>
-  <%= book.title %>
-  <%= book.body %>
+
+<% if @book.errors.any? %>
+<%= @book.errors.count %>error
+<% @book.errors.full_messages.each do |message| %>
+<%= message %>
+<% end %>
 <% end %>
 <h2>New book</h2>
-<%= form_with model:@book, url:'/books', local:true do |f| %>
+<%= form_with model:@book, url:'/books', method: :post ,local:true do |f| %>
 
 <h4>Title</h4>
   <%= f.text_field :title %>
